@@ -1,3 +1,5 @@
 import {generatePictures} from './data.js';
+import {renderPreview} from './preview.js';
 
-console.log(generatePictures());
+const pictures = generatePictures();
+renderPreview(pictures);
