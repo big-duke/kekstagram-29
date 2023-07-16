@@ -1,11 +1,10 @@
-const previewTemplate = document.querySelector('#picture')
-  .content
-  .querySelector('.picture');
+const previewTemplate = document
+  .querySelector('#picture')
+  .content.querySelector('.picture');
 
 const container = document.querySelector('.pictures');
 
-
-const createPreview = ({url,description,comments, likes}) => {
+const createPreview = ({ id, url, description, comments, likes }) => {
   const preview = previewTemplate.cloneNode(true);
 
   preview.querySelector('.picture__img').src = url;
@@ -13,8 +12,9 @@ const createPreview = ({url,description,comments, likes}) => {
   preview.querySelector('.picture__comments').textContent = comments.length;
   preview.querySelector('.picture__likes').textContent = likes;
 
-  return preview;
+  preview.dataset.previewId = id;
 
+  return preview;
 };
 
 export const renderPreview = (pictures) => {
@@ -22,7 +22,6 @@ export const renderPreview = (pictures) => {
   pictures.forEach((picture) => {
     const preview = createPreview(picture);
     fragment.append(preview);
-
   });
   container.append(fragment);
 };

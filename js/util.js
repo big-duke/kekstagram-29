@@ -25,3 +25,10 @@ export const createRandomIdFromRangeGenerator = (min, max) => {
 export const getRandomArrayElement = (elements) =>
   elements[getRandomInteger(0, elements.length - 1)];
 
+export const createIdGenerator = () => {
+  let last = 0;
+  return () => {
+    last += 1;
+    return last;
+  };
+};

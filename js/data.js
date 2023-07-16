@@ -1,4 +1,4 @@
-import {createRandomIdFromRangeGenerator, getRandomArrayElement, getRandomInteger} from './util.js';
+import {createRandomIdFromRangeGenerator, getRandomArrayElement, getRandomInteger, createIdGenerator} from './util.js';
 const commentsMessages = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -10,8 +10,8 @@ const commentsMessages = [
 
 const commentAuthors = ['Юлия', 'Надежда', 'Иван', 'Павел', 'Дмитрий', 'Ольга'];
 
-const generatePictureId = createRandomIdFromRangeGenerator(1, 25);
-const generateCommentId = createRandomIdFromRangeGenerator(1, 10000);
+const generatePictureId = createIdGenerator();
+const generateCommentId = createIdGenerator();
 
 const generateCommentMessages = () => {
   const messagesCount = getRandomInteger(1, 2);
