@@ -8,7 +8,7 @@ const likesCountElement = document.querySelector('.likes-count');
 const commentsCountContainerElement = document.querySelector('.social__comment-count');
 const commentsLoaderButton = document.querySelector('.social__comments-loader');
 const commentsCountElement = document.querySelector('.comments-count');
-const commentsContainerElement = document.querySelector('.social__comments');
+const commentsContainer = document.querySelector('.social__comments');
 const commentTemplate = document.querySelector('#social__comment').content;
 
 const createComment = ({ avatar, name, message }) => {
@@ -21,13 +21,13 @@ const createComment = ({ avatar, name, message }) => {
 
 const renderComments = (comments) => {
 
-  commentsContainerElement.innerHTML = '';
+  commentsContainer.innerHTML = '';
   const fragment = document.createDocumentFragment();
   comments.forEach((item) => {
     const comment = createComment(item);
     fragment.append(comment);
   });
-  commentsContainerElement.append(fragment);
+  commentsContainer.append(fragment);
 
 };
 export const displayPictureModal = ({ url, description, likes, comments }) => {
@@ -35,7 +35,7 @@ export const displayPictureModal = ({ url, description, likes, comments }) => {
   bodyElelement.classList.add('modal-open');
   commentsCountContainerElement.classList.add('hidden');
   commentsLoaderButton.classList.add('hidden');
-  
+
   pictureElement.src = url;
   pictureElement.alt = description;
   likesCountElement.textContent = likes;
