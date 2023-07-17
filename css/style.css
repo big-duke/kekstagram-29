@@ -1408,3 +1408,8 @@ main {
 .hidden {
   display: none;
 }
+
+.img-upload__field-wrapper {
+  color:red;
+  margin-bottom: 16px;
+}

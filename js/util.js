@@ -32,3 +32,5 @@ export const createIdGenerator = () => {
     return last;
   };
 };
+
+export const isEscape = (evt) => evt.key === 'Escape';
