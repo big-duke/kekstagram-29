@@ -4,6 +4,8 @@ import {
   validateHashTagsCount,
   validateHashTagsDuplicates,
 } from './form-validators.js';
+
+import { resetZoom } from './zoom.js';
 const bodyElelement = document.body;
 const modalElement = document.querySelector('.img-upload__overlay');
 const formModal = document.querySelector('.img-upload__form');
@@ -55,6 +57,7 @@ const showModal = () => {
 const hideModal = () => {
   formModal.reset();
   pristine.reset();
+  resetZoom();
   bodyElelement.classList.remove('modal-open');
   modalElement.classList.add('hidden');
   selectFileBtn.value = '';
