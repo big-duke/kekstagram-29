@@ -6,6 +6,9 @@ import {
 } from './form-validators.js';
 
 import { resetZoom } from './zoom.js';
+import { resetVisual } from './visual.js';
+import './visual.js';
+
 const bodyElelement = document.body;
 const modalElement = document.querySelector('.img-upload__overlay');
 const formModal = document.querySelector('.img-upload__form');
@@ -58,6 +61,7 @@ const hideModal = () => {
   formModal.reset();
   pristine.reset();
   resetZoom();
+  resetVisual();
   bodyElelement.classList.remove('modal-open');
   modalElement.classList.add('hidden');
   selectFileBtn.value = '';

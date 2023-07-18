@@ -10,6 +10,8 @@ const ZOOM_MIN = 0.25;
 const ZOOM_MAX = 1;
 const ZOOM_STEP = 0.25;
 
+
+
 const handleZoomChange = (step) => {
   if (step < 0 && zoom > ZOOM_MIN) {
     zoom -= ZOOM_STEP;
