@@ -1,7 +1,14 @@
-import { generatePictures } from './data.js';
+import { getData } from './api.js';
 import { renderPreview } from './preview.js';
 import { initUploadForm } from './form.js';
+import { showAlert } from './util.js';
 
-const pictures = generatePictures();
-renderPreview(pictures);
+getData()
+  .then((pictures) => {
+    renderPreview(pictures);
+  })
+  .catch((err) => {
+    showAlert(err.message);
+  });
+
 initUploadForm();

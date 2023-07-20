@@ -11,6 +11,7 @@ const displayedCommentsCountElement = document.querySelector('.displayed__commen
 const commentsContainer = document.querySelector('.social__comments');
 const commentTemplate = document.querySelector('#social__comment').content;
 
+
 let displayCommentsCount = 0;
 
 const createComment = ({ avatar, name, message }) => {

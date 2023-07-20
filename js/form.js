@@ -7,7 +7,8 @@ import {
 
 import { resetZoom } from './zoom.js';
 import { resetVisual } from './visual.js';
-import './visual.js';
+import { sendData } from './api.js';
+import { showSuccessMessage, showErrorMessage } from './messages.js';
 
 const bodyElelement = document.body;
 const modalElement = document.querySelector('.img-upload__overlay');
@@ -84,10 +85,15 @@ const submitFormHandler = (e) => {
   e.preventDefault();
 
   const isValid = pristine.validate();
+
   if (isValid) {
-    console.log('Можно отправлять');
-  } else {
-    console.log('Форма невалидна');
+    const formData = new FormData(formModal);
+
+    sendData(formData).then(() => {
+      hideModal();
+      showErrorMessage();
+    }).catch(() => showErrorMessage());
+
   }
 };
 

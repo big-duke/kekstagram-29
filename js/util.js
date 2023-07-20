@@ -34,3 +34,17 @@ export const createIdGenerator = () => {
 };
 
 export const isEscape = (evt) => evt.key === 'Escape';
+
+export const showAlert = (message) => {
+  const alertElement = document.querySelector('.alert__inner');
+  alertElement.classList.remove('visually-hidden');
+
+  alertElement.textContent = message;
+
+  setTimeout(() => {
+    alertElement.classList.add('visually-hidden');
+  }, 5000);
+};
+
+
+
