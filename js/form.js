@@ -7,10 +7,14 @@ import { sendData } from './api.js';
 import { isEscape } from './util.js';
 import { showSuccessMessage, showErrorMessage } from './messages.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png', 'webp'];
 
 const bodyElelement = document.body;
 const modalElement = document.querySelector('.img-upload__overlay');
 const formModal = document.querySelector('.img-upload__form');
+const fileChooser = document.querySelector('input[type=file]');
+const preview = document.querySelector('.img-upload__preview > img');
+const uploadBtn = document.querySelector('#upload-submit');
 const closeModalBtn = document.querySelector('.img-upload__cancel');
 const selectFileBtn = document.querySelector('.img-upload__input');
 const hashtagsElement = document.querySelector('.text__hashtags');
@@ -34,6 +38,18 @@ const hideModal = () => {
   document.removeEventListener('keydown', documentKeyDownHandler);
 };
 
+fileChooser.addEventListener('change', () => {
+
+  const file = fileChooser.files[0];
+  const fileName = file.name.toLowerCase();
+  const fileType = fileName.split('.').pop();
+  const matches = FILE_TYPES.includes(fileType);
+
+  if (matches) {
+    preview.src = URL.createObjectURL(file);
+  }
+});
+
 function documentKeyDownHandler(e) {
   if (isEscape(e)) {
     e.preventDefault();
@@ -52,12 +68,15 @@ const submitFormHandler = (e) => {
   const isValid = pristine.validate();
 
   if (isValid) {
+    uploadBtn.disabled = true;
     const formData = new FormData(formModal);
 
     sendData(formData).then(() => {
       hideModal();
       showSuccessMessage();
-    }).catch(() => showErrorMessage());
+    }).catch(() => showErrorMessage()).finally(() => {
+      uploadBtn.disabled = false;
+    });
 
   }
 };
