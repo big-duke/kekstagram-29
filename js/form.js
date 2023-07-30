@@ -52,7 +52,9 @@ fileChooser.addEventListener('change', () => {
 
 function documentKeyDownHandler(e) {
   if (isEscape(e)) {
-    e.preventDefault();
+    if (document.querySelector('section.error')) {
+      return;
+    }
     hideModal();
   }
 }
